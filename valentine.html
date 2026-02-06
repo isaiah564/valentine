@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Valentine ❤️ Kasie</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+      min-height: 100vh;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* PASSWORD SCREEN */
+    #lockScreen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      text-align: center;
+    }
+
+    .lockCard {
+      background: rgba(255,255,255,0.15);
+      padding: 40px;
+      border-radius: 25px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 20px;
+      border: none;
+      margin-top: 15px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 18px;
+      padding: 12px 30px;
+      border-radius: 30px;
+      border: none;
+      background: white;
+      color: #ff4d6d;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* MAIN CONTENT */
+    #content {
+      display: none;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+    }
+
+    .heart {
+      font-size: 3.5rem;
+      animation: beat 1s infinite;
+      margin: 20px 0;
+    }
+
+    p {
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    /* GALLERY */
+    .media {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin: 40px auto;
+      max-width: 900px;
+    }
+
+    img, video {
+      width: 100%;
+      border-radius: 20px;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+
+    /* FALLING HEARTS */
+    .falling-heart {
+      position: fixed;
+      top: -20px;
+      font-size: 20px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh); }
+    }
+
+    @keyframes beat {
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.25)}
+    }
+
+    audio { display:none; }
+  </style>
+</head>
+<body>
+
+<!-- MUSIC -->
+<audio autoplay loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PASSWORD SCREEN -->
+<div id="lockScreen">
+  <div class="lockCard">
+    <h1>For My Love ❤️</h1>
+    <p>Question only you can answer:</p>
+    <p><strong>What is your current nickname?</strong></p>
+    <input type="text" id="answer" placeholder="Type your answer" />
+    <button onclick="unlock()">Enter 💖</button>
+    <p id="error"></p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="content">
+  <h1>Happy Valentine’s Day ❤️</h1>
+  <h2>Kasie Nwobu Chiamaka</h2>
+
+  <div class="heart">💖</div>
+
+  <p>
+    My love, Kasie… loving you is my favorite thing in this world.
+    You are my peace, my joy, my answered prayer, and my forever.
+    Every picture here is a reminder that choosing you and fighting for us  was the best decision
+    of my life.
+  </p>
+
+  <!-- PHOTOS & VIDEOS -->
+  <div class="media">
+    <img src="kasie 8.jpeg" alt="Us" />
+    <img src="kasie 11.jpeg" alt="Memories" />
+    <video src="kasie 9.mp4" controls></video>
+    <img src="kasie 4.jpeg" alt="Love" />
+    <video src="kasie 5.mp4" controls></video>
+    <img src="kasie 7.jpeg" alt="baby" />
+  </div>
+
+  <p style="font-family:'Dancing Script',cursive;font-size:1.8rem;">
+    You are my forever Valentine 💍❤️
+  </p>
+</div>
+
+<script>
+  /* PASSWORD LOGIC */
+  const correctAnswer = "nkem"; // CHANGE THIS
+
+  function unlock() {
+    const ans = document.getElementById('answer').value.toLowerCase();
+    if (ans.includes(correctAnswer)) {
+      document.getElementById('lockScreen').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+      startHearts();
+    } else {
+      document.getElementById('error').innerText = 'That answer is only ours 💔';
+    }
+  }
+
+  /* FALLING HEARTS */
+  function startHearts() {
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'falling-heart';
+      heart.innerText = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 4) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }, 300);
+  }
+</script>
+
+</body>
+</html>
